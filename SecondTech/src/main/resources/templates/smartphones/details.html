@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorate="~{layout}">
+<head>
+    <script src="/js/product-details.js"></script>
+    <meta name="product" content="smartphone">
+</head>
+<body>
+<th:block layout:fragment="content">
+    <th:block th:switch="${smartphone == null}">
+        <th:block th:case="false" th:object="${smartphone}">
+            <h1 class="text-center font-weight-bold">Details</h1>
+            <hr/>
+            <div>
+                <div class="row justify-content-center">
+                    <img th:src="*{imageUrl}" height="200" width="200"/>
+                </div>
+                <h2 th:text="*{name}" class="text-center m-4"></h2>
+                <div class="row justify-content-center">
+                    <div class="col-3 text-left">CPU:</div>
+                    <div class="col-3 text-right" th:text="*{cpu}"></div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-3 text-left">Display:</div>
+                    <div class="col-3 text-right" th:text="*{display}"></div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-3 text-left">Memory:</div>
+                    <div class="col-3 text-right" th:text="*{memory}"></div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-3 text-left">RAM:</div>
+                    <div class="col-3 text-right" th:text="*{ram}"></div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-3 text-left">OS:</div>
+                    <div class="col-3 text-right" th:text="*{OS}"></div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-3 text-left">Battery:</div>
+                    <div class="col-3 text-right" th:text="*{battery}"></div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-3 text-left">Camera:</div>
+                    <div class="col-3 text-right" th:text="*{camera}"></div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-3 text-left">SIM:</div>
+                    <div class="col-3 text-right" th:text="*{SIM}"></div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-3 text-left">Price:</div>
+                    <div class="col-3 text-right" th:text="'&#36;' + *{price}"></div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-6 text-center">Description:</div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-6">
+                        <textarea class="my-textarea" rows="6" th:text="*{description}" disabled></textarea>
+                    </div>
+                </div>
+            </div>
+            <div sec:authorize="isAuthenticated()">
+                <div class="row justify-content-center m-5">
+                    <button id="order-btn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal">
+                       Order
+                    </button>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalLabel">Confirmation</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body text-center">
+                                Are you sure you want to order?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <button id="order-btn-modal" type="button" class="btn btn-primary" data-dismiss="modal">Order</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h2 class="text-center">Comments</h2>
+            <th:block th:switch="${comments == null || comments.isEmpty()}">
+                <th:block th:case="false">
+                    <th:block th:each="comment : ${comments}" th:object="${comment}">
+                        <div class="row justify-content-center">
+                            <div class="col-6">
+                                <h3 th:text="|*{username}:|"></h3>
+                                <textarea class="my-textarea" rows="6" th:text="*{content}" disabled></textarea>
+                                <hr/>
+                            </div>
+                        </div>
+                    </th:block>
+                </th:block>
+                <h2 th:case="true" class="font-weight-bold text-center m-5">No comments</h2>
+                <th:block sec:authorize="isAuthenticated()">
+                    <div class="row justify-content-center mb-5">
+                        <div id="comment-div" class="col-6">
+                            <div class="form-group">
+                                <label for="comment">Comment:</label>
+                                <textarea maxlength="200" class="my-textarea" rows="5" id="comment"></textarea>
+                            </div>
+                            <input class="btn btn-primary m-auto d-flex" type="submit" value="Comment" id="comment-button"/>
+                        </div>
+                    </div>
+                    <input type="text" id="productId" th:value="${smartphone.id}" hidden />
+                    <input type="text" id="_csrf" th:value="${_csrf.token}" hidden />
+                </th:block>
+            </th:block>
+        </th:block>
+        <h2 th:case="true" class="font-weight-bold text-center m-5">No smartphone found</h2>
+    </th:block>
+</th:block>
+</body>
+</html>

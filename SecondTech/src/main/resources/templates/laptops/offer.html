@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<body>
+<th:block layout:fragment="content">
+    <h1 class="text-center font-weight-bold m-5">Offer</h1>
+    <hr/>
+    <div class="w-50 mx-auto">
+        <form th:action="@{/laptops/offer}" method="post" th:object="${model}">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input class="form-control" type="text" id="name" name="name" th:field="*{name}" required>
+                <small class="text-danger" th:each="error : ${#fields.errors('name')}" th:text="${error}"></small>
+            </div>
+            <div class="form-group">
+                <label for="price">Price</label>
+                <input class="form-control" type="number" min="0" id="price" name="price" th:field="*{price}" required>
+                <small class="text-danger" th:each="error : ${#fields.errors('price')}" th:text="${error}"></small>
+            </div>
+            <div class="form-group">
+                <label for="cpu">CPU</label>
+                <input class="form-control" type="text" id="cpu" name="cpu" th:field="*{cpu}" required>
+                <small class="text-danger" th:each="error : ${#fields.errors('cpu')}" th:text="${error}"></small>
+            </div>
+            <div class="form-group">
+                <label for="display">Display</label>
+                <input class="form-control" type="text" id="display" th:field="*{display}" name="display" required>
+                <small class="text-danger" th:each="error : ${#fields.errors('display')}" th:text="${error}"></small>
+            </div>
+            <div class="form-group">
+                <label for="memory">Memory</label>
+                <input class="form-control" type="text" id="memory" th:field="*{memory}" name="memory" required>
+                <small class="text-danger" th:each="error : ${#fields.errors('memory')}" th:text="${error}"></small>
+            </div>
+            <div class="form-group">
+                <label for="imageUrl">Image Url</label>
+                <input class="form-control" type="text" id="imageUrl" name="imageUrl" th:field="*{imageUrl}" required>
+                <small class="text-danger" th:each="error : ${#fields.errors('imageUrl')}" th:text="${error}"></small>
+            </div>
+            <div class="form-group">
+                <label for="ram">RAM</label>
+                <input class="form-control" type="text" id="ram" name="ram" th:field="*{ram}" required>
+                <small class="text-danger" th:each="error : ${#fields.errors('ram')}" th:text="${error}"></small>
+            </div>
+            <div class="form-group">
+                <label for="OS">OS</label>
+                <input class="form-control" type="text" id="OS" name="OS" th:field="*{OS}" required>
+                <small class="text-danger" th:each="error : ${#fields.errors('OS')}" th:text="${error}"></small>
+            </div>
+            <div class="form-group">
+                <label for="GPU">GPU</label>
+                <input class="form-control" type="text" id="GPU" name="GPU" th:field="*{GPU}" required>
+                <small class="text-danger" th:each="error : ${#fields.errors('GPU')}" th:text="${error}"></small>
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea class="my-textarea" maxlength="200" rows="5" id="description" name="description"
+                          th:field="*{description}"></textarea>
+            </div>
+            <div class="d-flex justify-content-center m-5">
+                <button type="submit" class="btn btn-primary offer-btn">Offer</button>
+            </div>
+        </form>
+    </div>
+</th:block>
+</body>
+</html>
+

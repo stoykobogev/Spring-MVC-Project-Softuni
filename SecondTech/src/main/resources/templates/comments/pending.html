@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <script src="/js/comments-pending.js"></script>
+</head>
+<body>
+<th:block layout:fragment="content">
+    <h1 class="text-center font-weight-bold m-5">Comments</h1>
+    <hr/>
+    <th:block th:switch="${comments == null || comments.isEmpty()}">
+        <th:block th:case="false">
+            <table class="m-auto table table-striped">
+                <thead>
+                <tr class="row w-100 m-auto text-center">
+                    <th class="col-3">Username</th>
+                    <th class="col-6">Comment</th>
+                    <th class="col-3">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <th:block th:each="comment : ${comments}" th:object="${comment}">
+                    <tr class="row w-100 m-auto">
+                        <td class="col-3 text-center" th:text="*{username}"></td>
+                        <td class="col-6">
+                            <textarea class="my-textarea" rows="6" th:text="*{content}" disabled></textarea>
+                        </td>
+                        <td class="col-3 d-flex justify-content-between align-items-start">
+                            <button class="btn approve-btn">Approve</button>
+                            <button class="btn reject-btn">Reject</button>
+                            <input type="text" th:value="*{id}" hidden/>
+                        </td>
+                    </tr>
+                </th:block>
+                </tbody>
+            </table>
+            <input type="text" id="_csrf" th:value="${_csrf.token}" hidden/>
+        </th:block>
+        <h2 th:case="true" class="font-weight-bold text-center m-5">No comments</h2>
+    </th:block>
+</th:block>
+</body>
+</html>

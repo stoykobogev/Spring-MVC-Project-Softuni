@@ -1,0 +1,34 @@
+<th:block
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org">
+    <th:block th:fragment="pagination(page, route)">
+        <div class="justify-content-center d-flex m-4">
+            <nav aria-label="Products page">
+                <ul class="pagination">
+                    <th:block th:with="end = ${page.getTotalPages() > 7 ? 7 : page.getTotalPages()}">
+                        <li class="page-item">
+                            <a th:if="${page.hasPrevious()}" th:href="@{${route}(page=${page.getNumber() - 1})}"
+                               class="page-link">Previous</a>
+                        </li>
+                        <th:block th:with="start=${ (((1 + page.getNumber()) - (end / 2)) < 1
+                                    ? 1
+                                    : (((1 + page.getNumber()) + (end / 2)) > page.getTotalPages()
+                                        ? ((page.getTotalPages() + 1) - end)
+                                        : ((1 + page.getNumber()) - (end / 2))))}">
+                        <th:block th:each="i : ${#numbers.sequence(start, end - 1 + start)}">
+                            <li class="page-item">
+                                <a class="page-link" th:classappend="${i - 1 == page.getNumber()} ? 'text-danger'"
+                                   th:text="${i}" th:href="@{${route}(page=${i - 1})}"></a>
+                            </li>
+                        </th:block>
+                        <li class="page-item">
+                            <a th:if="${page.hasNext()}" th:href="@{${route}(page=${page.getNumber() + 1})}"
+                               class="page-link">Next</a>
+                        </li>
+                        </th:block>
+                    </th:block>
+                </ul>
+            </nav>
+        </div>
+    </th:block>
+</th:block>

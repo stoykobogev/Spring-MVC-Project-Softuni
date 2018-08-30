@@ -1,0 +1,131 @@
+<th:block
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<th:block th:fragment="navbar">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark font-weight-bold mb-3">
+        <a class="navbar-brand" href="/">SH</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <th:block th:switch="${#authorization.expression('hasAuthority(''MODERATOR'')')}">
+                    <th:block th:case="false">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/laptops/all">Laptops</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/smartphones/all">Smartphones</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/tablets/all">Tablets</a>
+                        </li>
+                        <li sec:authorize="isAuthenticated()" class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown4" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                My Offers
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown4">
+                                <a class="dropdown-item" href="/laptops/mine">Laptops</a>
+                                <a class="dropdown-item" href="/smartphones/mine">Smartphones</a>
+                                <a class="dropdown-item" href="/tablets/mine">Tablets</a>
+                            </div>
+                        </li>
+                    </th:block>
+                    <th:block th:case="true">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Products
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
+                                <a class="dropdown-item" href="/laptops/all">Laptops</a>
+                                <a class="dropdown-item" href="/smartphones/all">Smartphones</a>
+                                <a class="dropdown-item" href="/tablets/all">Tablets</a>
+                            </div>
+                        </li>
+                        <th:block sec:authorize="hasAuthority('ADMIN')">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown6" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Admin
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown6">
+                                    <a class="dropdown-item" href="/admin/users">Remove Users</a>
+                                    <a class="dropdown-item" href="/admin/register">Add Moderator</a>
+                                </div>
+                            </li>
+                        </th:block>
+                    </th:block>
+                </th:block>
+                <li sec:authorize="isAuthenticated()" class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Offer
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/laptops/offer">Laptop</a>
+                        <a class="dropdown-item" href="/smartphones/offer">Smartphone</a>
+                        <a class="dropdown-item" href="/tablets/offer">Tablet</a>
+                    </div>
+                </li>
+                <th:block sec:authorize="hasAnyAuthority('ADMIN', 'MODERATOR')">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/orders/all">Orders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/comments/pending">Comments</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Pending Offers
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                            <a class="dropdown-item" href="/laptops/pending">Laptop</a>
+                            <a class="dropdown-item" href="/smartphones/pending">Smartphone</a>
+                            <a class="dropdown-item" href="/tablets/pending">Tablet</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown5" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Remove Offers
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown5">
+                            <a class="dropdown-item" href="/laptops/remove">Laptop</a>
+                            <a class="dropdown-item" href="/smartphones/remove">Smartphone</a>
+                            <a class="dropdown-item" href="/tablets/remove">Tablet</a>
+                        </div>
+                    </li>
+                </th:block>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <th:block sec:authorize="isAnonymous()">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users/login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users/register">Register</a>
+                    </li>
+                </th:block>
+                <th:block  sec:authorize="isAuthenticated()">
+                    <li class="nav-item">
+                        <div class="nav-link" th:text="|Welcome, ${#authentication.name}|"></div>
+                    </li>
+                    <li class="nav-item">
+                        <form class="mb-0" th:action="@{/logout}" method="post">
+                            <button type="submit" class="btn btn-link nav-link font-weight-bold">Logout</button>
+                        </form>
+                    </li>
+                </th:block>
+            </ul>
+        </div>
+    </nav>
+</th:block>
+</th:block>

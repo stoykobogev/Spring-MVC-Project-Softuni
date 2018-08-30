@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <script src="/js/product-button.js"></script>
+</head>
+<body>
+<th:block layout:fragment="content">
+    <h1 class="text-center font-weight-bold">Laptops</h1>
+    <hr/>
+    <th:block th:switch="${laptopsPage == null || !laptopsPage.hasContent()}">
+        <th:block th:case="false">
+            <div class="row text-center m-2" th:with="laptops=${laptopsPage.content}">
+                 <th:block th:each="rowIndex : ${#numbers.sequence(0, laptops.size(), 4)}">
+                <th:block th:each="colIndex : ${#numbers.sequence(0, 3)}">
+                    <div class="col-3 text-center product" th:if="${rowIndex + colIndex < laptops.size()}"
+                         th:object="${laptops.get(rowIndex + colIndex)}">
+                        <img th:src="*{imageUrl}" height="100" width="100">
+                        <div th:text="*{name}"></div>
+                        <div class="price" th:text="'&#36;' + *{price}"></div>
+                        <form class="product-form" method="get" th:action="@{/laptops/details/{id}(id=*{id})}">
+                            <input th:value="${id}" hidden/>
+                        </form>
+                    </div>
+                </th:block>
+                 </th:block>
+            </div>
+            <th:block th:if="${laptopsPage.getTotalPages() > 1}">
+                <th:block th:replace="fragments/pagination :: pagination(${laptopsPage}, '/laptops/all')"></th:block>
+            </th:block>
+        </th:block>
+        <h2 th:case="true" class="font-weight-bold text-center m-5">No laptops</h2>
+    </th:block>
+</th:block>
+</body>
+</html>

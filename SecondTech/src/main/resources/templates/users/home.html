@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<body>
+<th:block layout:fragment="content">
+    <div>
+        <h1 class="text-center mt-5 font-weight-bold" th:text="|Welcome, ${#authentication.name}|"></h1>
+    </div>
+    <div class="justify-content-center d-flex">
+        <img src="https://res.cloudinary.com/secondtech/image/upload/v1535577159/1.jpg">
+    </div>
+</th:block>
+</body>
+</html>
