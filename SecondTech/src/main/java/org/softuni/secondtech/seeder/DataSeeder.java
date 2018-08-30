@@ -1,9 +1,9 @@
 package org.softuni.secondtech.seeder;
 
-import org.softuni.secondtech.entities.User;
-import org.softuni.secondtech.enums.Roles;
-import org.softuni.secondtech.repositories.UserRepository;
-import org.softuni.secondtech.repositories.UserRoleRepository;
+import org.softuni.secondtech.domain.entities.User;
+import org.softuni.secondtech.domain.enums.Roles;
+import org.softuni.secondtech.repository.UserRepository;
+import org.softuni.secondtech.repository.UserRoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;

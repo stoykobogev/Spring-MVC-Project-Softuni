@@ -1,8 +1,8 @@
 package org.softuni.secondtech.config;
 
-import org.softuni.secondtech.enums.Roles;
-import org.softuni.secondtech.handlers.AuthenticationHandler;
-import org.softuni.secondtech.services.UserService;
+import org.softuni.secondtech.domain.enums.Roles;
+import org.softuni.secondtech.web.handlers.AuthenticationHandler;
+import org.softuni.secondtech.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;

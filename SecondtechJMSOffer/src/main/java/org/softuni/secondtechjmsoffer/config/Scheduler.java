@@ -1,12 +1,12 @@
 package org.softuni.secondtechjmsoffer.config;
 
-import org.softuni.secondtechjmsoffer.entities.Laptop;
-import org.softuni.secondtechjmsoffer.entities.SmartPhone;
-import org.softuni.secondtechjmsoffer.entities.Tablet;
-import org.softuni.secondtechjmsoffer.services.CloudinaryService;
-import org.softuni.secondtechjmsoffer.services.LaptopService;
-import org.softuni.secondtechjmsoffer.services.SmartphoneService;
-import org.softuni.secondtechjmsoffer.services.TabletService;
+import org.softuni.secondtechjmsoffer.domain.entities.Laptop;
+import org.softuni.secondtechjmsoffer.domain.entities.SmartPhone;
+import org.softuni.secondtechjmsoffer.domain.entities.Tablet;
+import org.softuni.secondtechjmsoffer.service.CloudinaryService;
+import org.softuni.secondtechjmsoffer.service.LaptopService;
+import org.softuni.secondtechjmsoffer.service.SmartphoneService;
+import org.softuni.secondtechjmsoffer.service.TabletService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;

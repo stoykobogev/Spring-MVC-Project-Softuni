@@ -1,8 +1,8 @@
 package org.softuni.secondtechjmscomment.config;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
-import org.softuni.secondtechjmscomment.models.binding.CommentBindingModel;
-import org.softuni.secondtechjmscomment.models.binding.CommentUpdateBindingModel;
+import org.softuni.secondtechjmscomment.domain.models.binding.CommentBindingModel;
+import org.softuni.secondtechjmscomment.domain.models.binding.CommentUpdateBindingModel;
 import org.springframework.boot.autoconfigure.jms.DefaultJmsListenerContainerFactoryConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,8 +20,8 @@ import java.util.Map;
 public class BeanConfiguration {
 
     private static final String DEFAULT_BROKER_URL = "tcp://localhost:61616";
-    private static final String COMMENT_TYPE = "org.softuni.secondtech.models.binding.CommentBindingModel";
-    private static final String COMMENT_UPDATE_TYPE = "org.softuni.secondtech.models.binding.CommentUpdateBindingModel";
+    private static final String COMMENT_TYPE = "org.softuni.secondtech.domain.models.binding.CommentBindingModel";
+    private static final String COMMENT_UPDATE_TYPE = "org.softuni.secondtech.domain.models.binding.CommentUpdateBindingModel";
 
     @Bean
     public ActiveMQConnectionFactory connectionFactory() {

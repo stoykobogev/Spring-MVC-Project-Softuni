@@ -4,7 +4,7 @@ import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.modelmapper.ModelMapper;
-import org.softuni.secondtechjmsoffer.models.binding.*;
+import org.softuni.secondtechjmsoffer.domain.models.binding.*;
 import org.springframework.boot.autoconfigure.jms.DefaultJmsListenerContainerFactoryConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,15 +22,15 @@ import java.util.Map;
 public class BeanConfiguration {
 
     private static final String DEFAULT_BROKER_URL = "tcp://localhost:61616";
-    private static final String LAPTOP_TYPE = "org.softuni.secondtech.models.binding.LaptopOfferBindingModel";
-    private static final String LAPTOP_UPDATE_TYPE = "org.softuni.secondtech.models.binding.LaptopUpdateBindingModel";
-    private static final String LAPTOP_REMOVE_TYPE = "org.softuni.secondtech.models.binding.LaptopRemoveBindingModel";
-    private static final String SMARTPHONE_TYPE = "org.softuni.secondtech.models.binding.SmartphoneOfferBindingModel";
-    private static final String SMARTPHONE_UPDATE_TYPE = "org.softuni.secondtech.models.binding.SmartphoneUpdateBindingModel";
-    private static final String SMARTPHONE_REMOVE_TYPE = "org.softuni.secondtech.models.binding.SmartphoneRemoveBindingModel";
-    private static final String TABLET_TYPE = "org.softuni.secondtech.models.binding.TabletOfferBindingModel";
-    private static final String TABLET_UPDATE_TYPE = "org.softuni.secondtech.models.binding.TabletUpdateBindingModel";
-    private static final String TABLET_REMOVE_TYPE = "org.softuni.secondtech.models.binding.TabletRemoveBindingModel";
+    private static final String LAPTOP_TYPE = "org.softuni.secondtech.domain.models.binding.LaptopOfferBindingModel";
+    private static final String LAPTOP_UPDATE_TYPE = "org.softuni.secondtech.domain.models.binding.LaptopUpdateBindingModel";
+    private static final String LAPTOP_REMOVE_TYPE = "org.softuni.secondtech.domain.models.binding.LaptopRemoveBindingModel";
+    private static final String SMARTPHONE_TYPE = "org.softuni.secondtech.domain.models.binding.SmartphoneOfferBindingModel";
+    private static final String SMARTPHONE_UPDATE_TYPE = "org.softuni.secondtech.domain.models.binding.SmartphoneUpdateBindingModel";
+    private static final String SMARTPHONE_REMOVE_TYPE = "org.softuni.secondtech.domain.models.binding.SmartphoneRemoveBindingModel";
+    private static final String TABLET_TYPE = "org.softuni.secondtech.domain.models.binding.TabletOfferBindingModel";
+    private static final String TABLET_UPDATE_TYPE = "org.softuni.secondtech.domain.models.binding.TabletUpdateBindingModel";
+    private static final String TABLET_REMOVE_TYPE = "org.softuni.secondtech.domain.models.binding.TabletRemoveBindingModel";
 
     private static final String CLOUDINARY_CLOUD_NAME = "secondtech";
     private static final String CLOUDINARY_API_KEY = "133179424763556";

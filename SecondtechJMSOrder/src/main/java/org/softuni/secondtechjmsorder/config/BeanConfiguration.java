@@ -1,7 +1,7 @@
 package org.softuni.secondtechjmsorder.config;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
-import org.softuni.secondtechjmsorder.models.binding.OrderBindingModel;
+import org.softuni.secondtechjmsorder.domain.models.binding.OrderBindingModel;
 import org.springframework.boot.autoconfigure.jms.DefaultJmsListenerContainerFactoryConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +19,7 @@ import java.util.Map;
 public class BeanConfiguration {
 
     private static final String DEFAULT_BROKER_URL = "tcp://localhost:61616";
-    private static final String ORDER_TYPE = "org.softuni.secondtech.models.binding.OrderBindingModel";
+    private static final String ORDER_TYPE = "org.softuni.domain.secondtech.models.binding.OrderBindingModel";
 
     @Bean
     public ActiveMQConnectionFactory connectionFactory() {
