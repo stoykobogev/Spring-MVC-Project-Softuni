@@ -1,2 +1,3 @@
 # Spring-MVC-Project-Softuni
-Spring project for Softuni Exam
+Requires running ActiveMQ server.
+Link here: http://activemq.apache.org/download.html
