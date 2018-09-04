@@ -1,4 +1,4 @@
-# Java Web Spring MVC Project
+# Java Web Spring MVC Project - SoftUni Exam
   
 Requires running ActiveMQ server.  
 Link here: http://activemq.apache.org/download.html  
